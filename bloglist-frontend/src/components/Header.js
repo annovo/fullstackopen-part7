@@ -11,7 +11,6 @@ const Header = () => {
     dispatch(logoutUser())
   }
 
-
   return (
     <div>
       <Notification />

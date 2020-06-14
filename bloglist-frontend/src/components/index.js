@@ -1,5 +1,6 @@
 
 export { default as BlogForm} from './BlogForm'
+export { default as BlogInfo} from './BlogInfo'
 export { default as BlogsList} from './BlogsList'
 export { default as Login} from './Login'
 export { default as LoggedUser} from './LoggedUser'

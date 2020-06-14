@@ -3,9 +3,10 @@ import {
   Home,
   Header,
   UsersList,
-  UserInfo
+  UserInfo,
+  BlogInfo
 } from './components'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { initilizeBlogs } from './reducers/blogReducer'
 import { initilizeUser } from './reducers/userReducer'
@@ -37,6 +38,9 @@ const App = () => {
         </Route>
         <Route path ='/users'>
           <UsersList/>
+        </Route>
+        <Route path ='/blogs/:id'>
+          <BlogInfo/>
         </Route>
         <Route path ='/'>
           {
