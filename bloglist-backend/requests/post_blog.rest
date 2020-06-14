@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFuYW5hcyIsImlkIjoiNWVjYjJiZDQ4MzM1NjhiNDMzYjA4OWNlIiwiaWF0IjoxNTkwNTI3MTIzfQ._9s7NgJ-pj8OKPP7EKY7rPw9uNyav_0XZE21n6GPWLM
+
+{
+    "title": "Plush Toys",
+    "author": "Loo Stuffin",
+    "url": "http://toytoy.com"
+}

@@ -1,0 +1,37 @@
+{
+  "notes": [
+    {
+      "content": "custom-hookit aivan mahtavia",
+      "id": 1
+    },
+    {
+      "content": "paras feature ikinä <3",
+      "id": 2
+    },
+    {
+      "content": "new note",
+      "id": 976
+    },
+    {
+      "content": "lalal",
+      "id": 68
+    }
+  ],
+  "persons": [
+    {
+      "name": "mluukkai",
+      "number": "040-5483923",
+      "id": 1
+    },
+    {
+      "name": "person",
+      "number": "3492349",
+      "id": 896
+    },
+    {
+      "name": "wew",
+      "number": "111",
+      "id": 702
+    }
+  ]
+}
