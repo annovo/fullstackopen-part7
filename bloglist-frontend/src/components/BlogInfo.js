@@ -1,4 +1,5 @@
 import React from 'react'
+import CommentForm from './CommentForm'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteBlog, voteForBlog } from '../reducers/blogReducer'
@@ -11,6 +12,11 @@ const BlogInfo = () => {
   const currUser = useSelector(state => state.user)
   const blog = blogs.find(b => b.id === id)
   let removeStyle = { display: 'none' }
+
+  if(!blog)
+  {
+    return null
+  }
 
   if(blog.user && blog.user.username === currUser.username )
   {
@@ -28,8 +34,6 @@ const BlogInfo = () => {
     dispatch(voteForBlog(id))
   }
 
-  
- 
   return (
     <div>
       <h2>{blog.title} {blog.author}</h2>
@@ -40,6 +44,15 @@ const BlogInfo = () => {
       </p>
       { blog.user && <p>added by {blog.user.username}</p> } 
       <button className = 'delete-button' style = {removeStyle} onClick = {handleDelete}>remove</button>
+      <h3>comments</h3>
+      <CommentForm id = {blog.id} />
+      <ul>
+        {
+          ! blog.comments || blog.comments.length === 0
+          ? 'no comments yet'
+          : blog.comments.map((c, index) => <li key = {index} >{c}</li>)
+        }
+      </ul>
     </div>
   )
 }

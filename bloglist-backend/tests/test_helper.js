@@ -103,6 +103,7 @@ const loginUser = async (testApi) => {
   const result = await testApi.post('/api/login').send({ username: 'testuser', password: 'somepassword' })
   return 'bearer ' + result.body.token
 }
+
 module.exports = {
   initialBlogs,
   blogsInDb,

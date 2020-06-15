@@ -141,6 +141,52 @@ describe('updating a blog', () => {
   })
 })
 
+describe('commenting on blog', () => {
+  test('adding a new comment update comments of current blog', async () => {
+    const blogs = await helper.blogsInDb()
+    const comment = 'new comment'
+    const secondComment = 'another comment'
+    const blogId = blogs[0].id
+
+    await api
+      .post(`/api/blogs/${blogId}/comments`)
+      .send({ comment })
+
+    await api
+      .post(`/api/blogs/${blogId}/comments`)
+      .send({ comment: secondComment })
+      .expect(200)
+
+    const updatedBlogs = await helper.blogsInDb()
+    expect(updatedBlogs).toHaveLength(blogs.length)
+    expect(updatedBlogs[0].comments.length).toBe(2)
+    expect(updatedBlogs[0].comments).toContain(comment)
+  })
+
+  test.only('you can get all comments of the blog', async () => {
+    const blogs = await helper.blogsInDb()
+    const commentOne = 'new comment'
+    const commentTwo = 'another comment'
+    const blogId = blogs[0].id
+
+    await api
+      .post(`/api/blogs/${blogId}/comments`)
+      .send({ comment: commentOne })
+
+    await api
+      .post(`/api/blogs/${blogId}/comments`)
+      .send({ comment: commentTwo })
+
+    const comments = await api
+      .get(`/api/blogs/${blogId}/comments`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    expect(comments.body).toHaveLength(2)
+    expect(comments.body).toContain(commentTwo)
+  })
+})
+
 test('unique identifier is named id', async () => {
   const blogs = await helper.blogsInDb()
   expect(blogs[0].id).toBeDefined()

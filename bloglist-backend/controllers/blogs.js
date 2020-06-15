@@ -13,6 +13,12 @@ blogRouter.get('/:id', async (request, response) => {
   response.json(blogs)
 })
 
+blogRouter.get('/:id/comments', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  const comments = blog.comments
+  response.json(comments)
+})
+
 blogRouter.post('/', async (request, response) => {
   const body = request.body
 
@@ -36,7 +42,6 @@ blogRouter.post('/', async (request, response) => {
   user.blogs = user.blogs.concat(result._id)
   await user.save()
   response.status(201).json(result)
-
 })
 
 blogRouter.delete('/:id', async (request, response) => {
@@ -53,8 +58,6 @@ blogRouter.delete('/:id', async (request, response) => {
   }
   await blog.delete()
   response.status(204).end()
-
-
 })
 
 blogRouter.put('/:id', async (request, response) => {
@@ -69,4 +72,15 @@ blogRouter.put('/:id', async (request, response) => {
   await result.populate('user', { username: 1, name: 1, id: 1 }).execPopulate()
   response.json(result)
 })
+
+blogRouter.post('/:id/comments', async (request, response) => {
+  const body = request.body
+  const blog = await Blog.findById((request.params.id))
+
+  blog.comments = blog.comments.concat(body.comment)
+
+  const newBlog = await blog.save()
+  response.json(newBlog)
+})
+
 module.exports = blogRouter
