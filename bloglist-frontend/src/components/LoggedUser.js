@@ -1,26 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Nav, Button, Navbar } from 'react-bootstrap'
 
 const LoggedUser = ({ name, handleLogout}) => {
   
+  
   const styledDiv = {
-    background: 'lightgray'
+    //background: 'none'
   }
 
   const styledLink = {
-    padding: 5
+    padding: 5,
+    textDecoration: 'none',
+    color: 'white'
   }
 
-  return(  
-    <div>
-      <div style ={styledDiv}>
-        <Link style = {styledLink} to ='/'>blogs</Link>
-        <Link style = {styledLink} to ='/users'>users</Link>
+  return(
+    <>  
+    <Navbar bg = 'dark' variaant = 'dark'>
+        <Nav variant = 'pills' defaultActiveKey='link-1' fill>
+        <Nav.Item>
+          <Nav.Link style = {styledDiv} eventKey = 'link-1'>
+            <Link style = {styledLink} to ='/'>blogs</Link>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" style = {styledDiv}>
+            <Link style = {styledLink} to ='/users'>users</Link>
+          </Nav.Link>
+        </Nav.Item>
+
+      </Nav>
+      <div style = {{position: 'absolute', right: 5, color: 'lightgray'}}>
         {name} is logged in {' '} 
-        <button id = 'logout-button' onClick = {handleLogout}>logout</button>
+        <Button variant = 'secondary' size ='sm' id = 'logout-button' onClick = {handleLogout}>logout</Button>
       </div>
-      <h2>Blogs</h2>
-    </div>
+      </Navbar>
+      <h2 className = 'text-center'>Blog App</h2>
+    </>
   )
 }
 

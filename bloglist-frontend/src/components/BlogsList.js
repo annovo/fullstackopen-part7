@@ -1,22 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
 const Blog = ({ blog }) => {
   const blogStyle ={
-    paddingTop: 10,
-    paddingBottom: 5,
-    paddingLeft: 2,
-    border: 'solid',
-    borderColor: 'gray',
-    borderWidth: 5,
-    marginBottom: 5
+    textDecoration: 'none'
   }
 
   return (
-    <div style = {blogStyle}>
-      <Link to = {`/blogs/${blog.id}`}>{blog.title} by {blog.author}</Link>
+    <div>
+      <Link style = {blogStyle} to = {`/blogs/${blog.id}`}>
+        <ListGroup.Item variant = 'primary' action>
+        {blog.title} by {blog.author}
+        </ListGroup.Item>
+        
+      </Link>
     </div>
   )
 }
@@ -26,10 +26,13 @@ const BlogsList = () => {
 
   return (
     <div className = 'blogList'>
-      {blogs.map(blog => {
-        return <Blog key={blog.id} blog={blog} />
-      }
-      )}
+      <ListGroup>
+        {blogs.map(blog => {
+          return <Blog key={blog.id} blog={blog}/>
+        }
+        )}
+      </ListGroup>
+      
     </div>
   )
 }

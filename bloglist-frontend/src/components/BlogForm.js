@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 
 const BlogForm = ({ createBlog }) => {
+  const margin = {marginBottom: 5}
+  const zeroMargin = {marginBottom: 0}
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -35,20 +38,27 @@ const BlogForm = ({ createBlog }) => {
   return (
     <>
       <h2>Create New</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          title: <input id = 'title' value={title} onChange={handleTitleChange} />
-        </div>
-        <div>
-          author : <input id = 'author' value={author} onChange={handleAuthorChange} />
-        </div>
-        <div>
-          url: <input id = 'url' value={url} onChange={handleUrlChange} />
-        </div>
-        <div>
-          <button type="submit">create</button>
-        </div>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label> Title </Form.Label> 
+          <Form.Control size = 'sm' id = 'title' value={title} onChange={handleTitleChange} />
+          <Form.Text className = 'text-muted text-right' style = {zeroMargin}>
+            *this field is required
+          </Form.Text>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label> Author </Form.Label>
+           <Form.Control size = 'sm' id = 'author' value={author} onChange={handleAuthorChange} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>URL</Form.Label>
+          <Form.Control size = 'sm' id = 'url' value={url} onChange={handleUrlChange} />
+          <Form.Text className = 'text-muted text-right' style = {zeroMargin}>
+            *this field is required
+          </Form.Text>
+        </Form.Group>
+        <Button size = 'sm' type="submit" style = {margin}>create</Button>
+      </Form>
     </>
   )
 }

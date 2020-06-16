@@ -3,6 +3,7 @@ import CommentForm from './CommentForm'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteBlog, voteForBlog } from '../reducers/blogReducer'
+import { Button, ListGroup } from 'react-bootstrap'
 
 const BlogInfo = () => {
   const dispatch = useDispatch()
@@ -11,7 +12,10 @@ const BlogInfo = () => {
   const blogs = useSelector(state => state.blogs)
   const currUser = useSelector(state => state.user)
   const blog = blogs.find(b => b.id === id)
+
   let removeStyle = { display: 'none' }
+  const padding = {paddingTop: 5}
+  const opacity = {opacity: 0.5}
 
   if(!blog)
   {
@@ -26,8 +30,8 @@ const BlogInfo = () => {
   const handleDelete = () => {
     if(window.confirm(`Remove blog "${blog.title}" by ${blog.author} ?`)){
       dispatch(deleteBlog(id))
+      history.push('/')
     }
-    history.push('/')
   }
 
   const updateBlog = () => {
@@ -40,19 +44,19 @@ const BlogInfo = () => {
       <a href = {blog.url}>{blog.url}</a>
       <p className = 'like-container'>
         {blog.likes} likes
-        <button type = 'button' className = 'like-button' onClick={updateBlog}>like</button>
+        <Button size = 'sm' variant ='light' type = 'button' className = 'like-button' onClick={updateBlog}>like</Button>
       </p>
-      { blog.user && <p>added by {blog.user.username}</p> } 
-      <button className = 'delete-button' style = {removeStyle} onClick = {handleDelete}>remove</button>
-      <h3>comments</h3>
+      { blog.user && <p style = {opacity}>added by {blog.user.username}</p> } 
+      <Button size = 'sm' variant = 'danger' className = 'delete-button' style = {removeStyle} onClick = {handleDelete}>remove</Button>
+      <h3>Comments</h3>
       <CommentForm id = {blog.id} />
-      <ul>
+      <ListGroup style = {padding} variant = 'flush'>
         {
           ! blog.comments || blog.comments.length === 0
-          ? 'no comments yet'
-          : blog.comments.map((c, index) => <li key = {index} >{c}</li>)
+          ? <ListGroup.Item key = '0' disabled = 'true' >no comments yet</ListGroup.Item>
+          : blog.comments.map((c, index) => <ListGroup.Item key = {index} variant = 'dark'>{c}</ListGroup.Item>)
         }
-      </ul>
+      </ListGroup>
     </div>
   )
 }

@@ -30,7 +30,7 @@ const App = () => {
  
 
   return (
-    <div>
+    <div className = 'container'>
       <Header />
       <Switch>
         <Route path = '/users/:id'>
