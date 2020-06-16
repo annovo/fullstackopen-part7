@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
 const BlogForm = ({ createBlog }) => {
-  const margin = {marginBottom: 5}
+  const buttonStyle = {marginBottom: 5, float: 'right'}
   const zeroMargin = {marginBottom: 0}
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -57,7 +57,10 @@ const BlogForm = ({ createBlog }) => {
             *this field is required
           </Form.Text>
         </Form.Group>
-        <Button size = 'sm' type="submit" style = {margin}>create</Button>
+        <div style = {{overflow: 'hidden'}}>
+        <Button size = 'sm' type="submit" style = {buttonStyle}>create</Button>  
+        </div>
+        
       </Form>
     </>
   )

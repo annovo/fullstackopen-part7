@@ -23,7 +23,8 @@ const Home = () => {
       </Togglable>      */}
       <Button 
         style = {margin}
-        variant = 'warning'
+
+        variant = 'info'
         onClick = {() => setOpen(!open)}
         aria-controls = 'collapse-form'
         aria-expanded = {open}

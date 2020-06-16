@@ -20,12 +20,12 @@ const LoggedUser = ({ name, handleLogout}) => {
     <Navbar bg = 'dark' variaant = 'dark'>
         <Nav variant = 'pills' defaultActiveKey='link-1' fill>
         <Nav.Item>
-          <Nav.Link style = {styledDiv} eventKey = 'link-1'>
+          <Nav.Link style = {styledDiv} eventKey = 'link-1' as = 'span'>
             <Link style = {styledLink} to ='/'>blogs</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2" style = {styledDiv}>
+          <Nav.Link eventKey="link-2" style = {styledDiv} as = 'span'>
             <Link style = {styledLink} to ='/users'>users</Link>
           </Nav.Link>
         </Nav.Item>
