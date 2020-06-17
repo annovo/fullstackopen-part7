@@ -28,11 +28,10 @@ const App = () => {
     dispatch(initilizeBlogs())
   }, [dispatch])
  
-
-  return (
-    <div className = 'container'>
-      <Header />
-      <Switch>
+  const mainPage = () => {
+    if(currUser){
+      return(
+        <Switch>
         <Route path = '/users/:id'>
           <UserInfo />
         </Route>
@@ -50,6 +49,16 @@ const App = () => {
           }
         </Route>
       </Switch>
+      )
+    } else {
+      return null
+    }
+  }
+  
+  return (
+    <div className = 'container'>
+      <Header />
+      {mainPage()}
     </div>
   )
 }
